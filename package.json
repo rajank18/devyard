@@ -4,7 +4,7 @@
   "description": "A cemetery for abandoned side projects",
   "type": "module",
   "bin": {
-    "devyard": "./cli.js"
+    "devyard": "cli.js"
   },
   "repository": {
     "type": "git",
