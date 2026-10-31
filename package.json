@@ -6,6 +6,14 @@
   "bin": {
     "devyard": "./cli.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajank18/devyard.git"
+  },
+  "homepage": "https://github.com/rajank18/devyard#readme",
+  "bugs": {
+    "url": "https://github.com/rajank18/devyard/issues"
+  },
   "scripts": {
     "test": "node --test"
   },
@@ -28,6 +36,6 @@
     "abandoned",
     "devyard"
   ],
-  "author": "",
+  "author": "rajank18",
   "license": "MIT"
 }
