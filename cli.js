@@ -18,7 +18,7 @@ import {
 
 function printHelp() {
   console.log(`
-${colors.marigold('devyard')} ${colors.dim('v1.0.0')}
+${colors.marigold('devyard')} ${colors.dim('v1.0.1')}
 A cemetery for abandoned side projects.
 
 ${colors.bold('USAGE:')}
@@ -143,7 +143,7 @@ async function main() {
   }
 
   if (options.version) {
-    console.log('devyard v1.0.0');
+    console.log('devyard v1.0.1');
     process.exit(0);
   }
 
