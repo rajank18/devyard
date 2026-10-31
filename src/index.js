@@ -226,6 +226,7 @@ export async function exportGraveyard({
 export {
   findGitRepos,
   collectRepoDetails,
+  resolvePath,
   renderGravestone,
   renderResurrection,
   generateGraveyardHtml,

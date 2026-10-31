@@ -1,10 +1,10 @@
 {
   "name": "devyard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A cemetery for abandoned side projects",
   "type": "module",
   "bin": {
-    "devyard": "./cli.js"
+    "devyard": "cli.js"
   },
   "repository": {
     "type": "git",

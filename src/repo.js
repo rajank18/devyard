@@ -32,7 +32,11 @@ const BINARY_EXTENSIONS = new Set([
 
 export function resolvePath(dirPath) {
   if (!dirPath) {
-    return path.join(os.homedir(), 'projects');
+    const defaultHomeProjects = path.join(os.homedir(), 'projects');
+    if (fs.existsSync(defaultHomeProjects)) {
+      return defaultHomeProjects;
+    }
+    return process.cwd();
   }
   if (dirPath.startsWith('~')) {
     return path.join(os.homedir(), dirPath.slice(1));
@@ -51,8 +55,8 @@ export function findGitRepos(parentDir) {
     throw new Error(`Path is not a directory: ${resolved}`);
   }
 
-  const entries = fs.readdirSync(resolved, { withFileTypes: true });
   const repos = [];
+  const entries = fs.readdirSync(resolved, { withFileTypes: true });
 
   for (const entry of entries) {
     if (entry.isDirectory()) {
@@ -65,6 +69,14 @@ export function findGitRepos(parentDir) {
         });
       }
     }
+  }
+
+  // If the directory itself is a git repository and no child repos were found, include itself
+  if (repos.length === 0 && fs.existsSync(path.join(resolved, '.git'))) {
+    repos.push({
+      name: path.basename(resolved),
+      path: resolved
+    });
   }
 
   return repos;
@@ -96,7 +108,6 @@ export function getCommitDates(repoDir) {
       isEmpty: false
     };
   } catch {
-    // Empty repo with no commits or git error
     return {
       birthDate: null,
       deathDate: null,

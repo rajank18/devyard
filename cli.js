@@ -7,6 +7,7 @@ import {
   exportGraveyard,
   renderGravestone,
   renderResurrection,
+  resolvePath,
   colors
 } from './src/index.js';
 import {
@@ -18,7 +19,7 @@ import {
 
 function printHelp() {
   console.log(`
-${colors.marigold('devyard')} ${colors.dim('v1.0.2')}
+${colors.marigold('devyard')} ${colors.dim('v1.0.3')}
 A cemetery for abandoned side projects.
 
 ${colors.bold('USAGE:')}
@@ -143,7 +144,7 @@ async function main() {
   }
 
   if (options.version) {
-    console.log('devyard v1.0.2');
+    console.log('devyard v1.0.3');
     process.exit(0);
   }
 
@@ -159,7 +160,8 @@ async function main() {
 
   try {
     if (command === 'scan') {
-      const targetDir = options.positional[0] || '~/projects';
+      const rawTarget = options.positional[0] || null;
+      const targetDir = resolvePath(rawTarget);
       console.log(`${colors.dim('Inspecting graveyard at')} ${colors.marigold(targetDir)}${colors.dim('...')}`);
 
       // Scan is no-ai by default unless --ai or --provider is explicitly given
@@ -182,6 +184,7 @@ async function main() {
 
       if (totalScanned === 0) {
         console.log(`\n${colors.dim('No git repositories found in')} ${targetDir}.`);
+        console.log(`${colors.dim('Tip: Pass a directory containing your projects: devyard scan <folder>')}\n`);
         return;
       }
 
@@ -215,7 +218,8 @@ async function main() {
 
       console.log(renderResurrection(resurrection));
     } else if (command === 'export') {
-      const targetDir = options.positional[0] || '~/projects';
+      const rawTarget = options.positional[0] || null;
+      const targetDir = resolvePath(rawTarget);
       console.log(`${colors.dim('Gathering tombstones from')} ${colors.marigold(targetDir)}${colors.dim('...')}`);
 
       let exportProvider = 'none';
