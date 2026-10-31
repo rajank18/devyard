@@ -1,0 +1,9 @@
+node_modules
+*.log
+graveyard.html
+/tmp
+/temp
+coverage
+test
+.DS_Store
+Thumbs.db

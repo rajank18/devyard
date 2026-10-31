@@ -1,0 +1,33 @@
+{
+  "name": "devyard",
+  "version": "1.0.0",
+  "description": "A cemetery for abandoned side projects",
+  "type": "module",
+  "bin": {
+    "devyard": "./cli.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "files": [
+    "cli.js",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "git",
+    "side-projects",
+    "ollama",
+    "cli",
+    "graveyard",
+    "cemetery",
+    "abandoned",
+    "devyard"
+  ],
+  "author": "",
+  "license": "MIT"
+}
